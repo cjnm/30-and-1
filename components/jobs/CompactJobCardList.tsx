@@ -1,6 +1,6 @@
 "use client";
 
-import { Job } from "@/lib/db/airtable";
+import { Job } from "@/lib/types/job";
 import { CompactJobCard } from "@/components/jobs/CompactJobCard";
 
 export function CompactJobCardList({

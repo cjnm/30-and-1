@@ -1,6 +1,6 @@
 "use client";
 
-import type { Job } from "@/lib/db/airtable";
+import type { Job } from "@/lib/types/job";
 import { JobListings } from "@/components/jobs/JobListings";
 import { PostJobBanner } from "@/components/ui/post-job-banner";
 import { useState, useCallback } from "react";
@@ -235,11 +235,10 @@ export function JobsLayout({ filteredJobs }: JobsLayoutProps) {
                           setTimeout(() => setIsFiltering(false), 300);
                         }
                       }}
-                      className={`hover:bg-gray-100 transition-colors ${
-                        currentPage === 1
+                      className={`hover:bg-gray-100 transition-colors ${currentPage === 1
                           ? "pointer-events-none opacity-50"
                           : ""
-                      }`}
+                        }`}
                     />
                   </PaginationItem>
 
@@ -283,11 +282,10 @@ export function JobsLayout({ filteredJobs }: JobsLayoutProps) {
                           setTimeout(() => setIsFiltering(false), 300);
                         }
                       }}
-                      className={`hover:bg-gray-100 transition-colors ${
-                        currentPage === totalPages
+                      className={`hover:bg-gray-100 transition-colors ${currentPage === totalPages
                           ? "pointer-events-none opacity-50"
                           : ""
-                      }`}
+                        }`}
                     />
                   </PaginationItem>
                 </PaginationContent>

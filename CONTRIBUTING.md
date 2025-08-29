@@ -7,6 +7,7 @@ Thank you for your interest in contributing! Here's how you can help:
 1. Fork the repo
 2. Clone it to your machine
 3. Create a new branch:
+
 ```bash
 git checkout -b feature/your-feature-name
 ```
@@ -20,22 +21,25 @@ git checkout -b feature/your-feature-name
 ## Development Setup
 
 1. Install dependencies:
+
 ```bash
 npm install
 ```
 
-2. Set up Airtable:
-- Create a base with a "Jobs" table
-- Get your Personal Access Token
-- Add required scopes (data.records:read, schema.bases:read)
+2. Set up MongoDB:
 
-3. Create a `.env` file:
+- Install MongoDB locally or create a MongoDB Atlas account
+- Get your connection string
+
+3. Create a `.env.local` file:
+
 ```env
-AIRTABLE_ACCESS_TOKEN=your_token_here
-AIRTABLE_BASE_ID=your_base_id_here
+MONGODB_URI=mongodb://localhost:27017/bordful
+MONGODB_DB_NAME=bordful
 ```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -50,8 +54,9 @@ app/
     [id]/
       page.tsx       # Individual job page
 lib/
-  db/
-    airtable.ts     # Airtable integration
+  db.ts           # MongoDB connection
+  models/         # MongoDB schemas
+  types/          # TypeScript type definitions
   utils/
     formatDate.ts   # Date formatting utilities
 components/

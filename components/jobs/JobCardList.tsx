@@ -1,6 +1,6 @@
 "use client";
 
-import { Job } from "@/lib/db/airtable";
+import { Job } from "@/lib/types/job";
 import { JobCard } from "@/components/jobs/JobCard";
 
 export function JobCardList({ jobs }: { jobs: Job[] }) {

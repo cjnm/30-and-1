@@ -1,4 +1,4 @@
-import type { Job } from "@/lib/db/airtable";
+import type { Job } from "@/lib/types/job";
 import { JobCard } from "@/components/jobs/JobCard";
 
 interface JobListingsProps {

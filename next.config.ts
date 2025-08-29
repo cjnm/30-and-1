@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   env: {
-    AIRTABLE_ACCESS_TOKEN: process.env.AIRTABLE_ACCESS_TOKEN,
-    AIRTABLE_BASE_ID: process.env.AIRTABLE_BASE_ID,
+    MONGODB_URI: process.env.MONGODB_URI,
+    MONGODB_DB_NAME: process.env.MONGODB_DB_NAME,
   },
   async headers() {
     return [
