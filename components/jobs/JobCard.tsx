@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Job, formatSalary } from "@/lib/db/airtable";
+import { Job, formatSalary } from "@/lib/types/job";
 import { formatDate } from "@/lib/utils/formatDate";
 import { generateJobSlug } from "@/lib/utils/slugify";
 import { Sparkles, ArrowUpRight } from "lucide-react";
@@ -18,14 +18,14 @@ export function JobCard({ job }: { job: Job }) {
         ? `Remote (${job.remote_region})`
         : null
       : job.workplace_type === "Hybrid"
-      ? [
+        ? [
           job.workplace_city,
           job.workplace_country,
           job.remote_region ? `Hybrid (${job.remote_region})` : null,
         ]
           .filter(Boolean)
           .join(", ") || null
-      : [job.workplace_city, job.workplace_country]
+        : [job.workplace_city, job.workplace_country]
           .filter(Boolean)
           .join(", ") || null;
 
@@ -43,11 +43,10 @@ export function JobCard({ job }: { job: Job }) {
     <div className="group relative">
       <Link
         href={`/jobs/${generateJobSlug(job.title, job.company)}`}
-        className={`block p-5 border rounded-lg transition-all ${
-          job.featured
+        className={`block p-5 border rounded-lg transition-all ${job.featured
             ? "bg-zinc-100 hover:bg-zinc-50"
             : "hover:border-gray-400"
-        }`}
+          }`}
       >
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-2">

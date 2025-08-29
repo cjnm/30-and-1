@@ -2,8 +2,7 @@
 
 import { useState, useMemo, useCallback, useEffect, Suspense } from "react";
 import { JobCard } from "@/components/jobs/JobCard";
-import type { Job, CareerLevel } from "@/lib/db/airtable";
-import { normalizeAnnualSalary } from "@/lib/db/airtable";
+import type { Job, CareerLevel, normalizeAnnualSalary } from "@/lib/types/job";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { formatDistanceToNow, isToday } from "date-fns";
@@ -650,11 +649,10 @@ function HomePageContent({ initialJobs }: { initialJobs: Job[] }) {
                             setTimeout(() => setIsFiltering(false), 300);
                           }
                         }}
-                        className={`hover:bg-gray-100 transition-colors ${
-                          currentPage === 1
+                        className={`hover:bg-gray-100 transition-colors ${currentPage === 1
                             ? "pointer-events-none opacity-50"
                             : ""
-                        }`}
+                          }`}
                       />
                     </PaginationItem>
 
@@ -700,11 +698,10 @@ function HomePageContent({ initialJobs }: { initialJobs: Job[] }) {
                             setTimeout(() => setIsFiltering(false), 300);
                           }
                         }}
-                        className={`hover:bg-gray-100 transition-colors ${
-                          currentPage === totalPages
+                        className={`hover:bg-gray-100 transition-colors ${currentPage === totalPages
                             ? "pointer-events-none opacity-50"
                             : ""
-                        }`}
+                          }`}
                       />
                     </PaginationItem>
                   </PaginationContent>

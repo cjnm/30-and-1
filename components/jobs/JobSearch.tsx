@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Job } from "@/lib/db/airtable";
+import { Job } from "@/lib/types/job";
 
 export function JobSearch({
   jobs,

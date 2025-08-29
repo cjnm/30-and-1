@@ -1,6 +1,6 @@
 # Bordful: Job Board Starter
 
-Bordful is a modern, minimal job board built with Next.js, Tailwind CSS, and Airtable. Features static generation, client-side search, and a clean UI with Geist font.
+Bordful is a modern, minimal job board built with Next.js, Tailwind CSS, and MongoDB. Features static generation, client-side search, and a clean UI with Geist font.
 
 ![Job Board Starter Screenshot](public/screenshot.png)
 
@@ -8,7 +8,7 @@ Bordful is a modern, minimal job board built with Next.js, Tailwind CSS, and Air
 
 - Built with Next.js
 - Styled with Tailwind CSS
-- Airtable as the backend
+- MongoDB as the backend
 - Client-side search with memoization
 - Server-side caching with 5-minute revalidation
 - Content-specific loading states
@@ -83,7 +83,7 @@ Bordful is a modern, minimal job board built with Next.js, Tailwind CSS, and Air
 Bordful features a comprehensive internationalization-ready language system:
 
 - Full ISO 639-1 support with all 184 language codes
-- User-friendly Airtable format: "Language Name (code)" (e.g., "English (en)")
+- User-friendly format: "Language Name (code)" (e.g., "English (en)")
 - Flexible matching for both language names and codes
 - Language filtering with alphabetical sorting
 - SEO-optimized language URLs using standard codes
@@ -91,6 +91,7 @@ Bordful features a comprehensive internationalization-ready language system:
 - Foundational support for multilingual job boards
 
 **Airtable Setup:** In your Airtable base, set up the `languages` field as a Multiple Select with options formatted as `Language Name (code)`, for example:
+
 ```
 English (en)
 Spanish (es)
@@ -106,18 +107,21 @@ This approach combines human readability in Airtable with the benefits of standa
 Bordful includes a feature-rich FAQ page with advanced functionality:
 
 #### Client-Side Search
+
 - Real-time filtering of FAQ items as users type
 - URL persistence for sharing search results (e.g., `/faq?q=search+term`)
 - Keyboard navigation with Escape key to clear search
 - Visual indicators for search state with clear button
 
 #### Rich Text Support
+
 - Markdown rendering for FAQ answers using ReactMarkdown
 - Support for headings, lists, tables, code blocks, and blockquotes
 - Consistent styling with the rest of the application
 - Configurable per FAQ item with `isRichText` property
 
 #### Navigation and Accessibility
+
 - Anchor links for direct navigation to specific categories (e.g., `/faq#general-questions`)
 - Copy-to-clipboard feature for sharing specific FAQ sections
 - Accordion interface for compact presentation
@@ -125,26 +129,28 @@ Bordful includes a feature-rich FAQ page with advanced functionality:
 - Stable IDs for reliable expand/collapse functionality
 
 #### SEO Optimization
+
 - Automatic generation of FAQ schema markup (schema.org/FAQPage)
 - Improved search engine visibility with structured data
 - SEO-friendly URLs and metadata
 
 #### Configuration
+
 In your `config.ts` file, you can customize the FAQ page:
 
 ```typescript
 faq: {
   // Enable or disable the FAQ page
   enabled: true,
-  
+
   // Show FAQ link in navigation and footer
   showInNavigation: true,
   showInFooter: true,
-  
+
   // Page title and description
   title: "Frequently Asked Questions",
   description: "Find answers to common questions about our job board and services.",
-  
+
   // Categories of FAQs
   categories: [
     {
@@ -196,12 +202,14 @@ scripts: {
 ### Analytics Integration
 
 The starter comes pre-configured for Umami Analytics:
+
 1. Scripts are loaded using Next.js's optimized Script component
 2. Analytics code runs after the page becomes interactive
 3. Proper boolean attribute handling for script tags
 4. Non-blocking script loading for optimal performance
 
 To add your own analytics or third-party scripts:
+
 1. Add your script configuration to `config/config.ts`
 2. Scripts in `head` array load in `<head>`, scripts in `body` array load at end of `<body>`
 3. Choose appropriate loading strategy based on script priority
@@ -230,6 +238,7 @@ npm install
 
 - Create a new base in Airtable
 - Create a table with your desired name (default is "Jobs") with these fields:
+
   ```
   title: Single line text
   company: Single line text
@@ -266,7 +275,7 @@ npm install
   ```
 
   **Note on Currency**: For `salary_currency`, it's recommended to use the format "CODE (Name)" such as "USD (United States Dollar)" or "BTC (Bitcoin)" for clarity. The system supports both traditional fiat currencies and cryptocurrencies.
-  
+
   **Note on Schema.org Fields**: The additional schema.org fields are optional but highly recommended for improved SEO and Google Jobs integration. See [Schema.org Implementation](./docs/schema-implementation.md) for more details.
 
 For both options:
@@ -317,11 +326,13 @@ Visit `http://localhost:3000` to see your job board.
 ### How It Works
 
 The configuration system is designed to be:
+
 - Easy to set up (just copy and customize)
 - Flexible (customize any aspect of your job board)
 - Maintainable (pull updates without losing your customizations)
 
 When the app starts:
+
 1. It first tries to load your custom `config.ts`
 2. If not found, falls back to `config.example.ts`
 3. TypeScript ensures type safety in both cases
@@ -329,6 +340,7 @@ When the app starts:
 ### Updating
 
 When pulling updates from upstream:
+
 1. Your `config.ts` stays as is with your customizations
 2. You might get updates to `config.example.ts`
 3. Check `config.example.ts` for new options
@@ -355,9 +367,9 @@ export const config = {
         strategy: "afterInteractive",
         attributes: {
           "data-website-id": "xxx",
-          defer: ""  // Boolean attributes should use empty string
-        }
-      }
+          defer: "", // Boolean attributes should use empty string
+        },
+      },
     ],
     body: [
       // Scripts to be loaded at end of <body>
@@ -365,10 +377,10 @@ export const config = {
         src: "https://widget.com/embed.js",
         strategy: "lazyOnload",
         attributes: {
-          async: ""  // Boolean attributes should use empty string
-        }
-      }
-    ]
+          async: "", // Boolean attributes should use empty string
+        },
+      },
+    ],
   },
 
   // Navigation
@@ -411,31 +423,32 @@ export const config = {
       { label: "Changelog", link: "/changelog" },
     ],
   },
-  
+
   // Pricing Configuration
   pricing: {
     // Enable or disable the pricing page
     enabled: true,
-    
+
     // Show pricing link in navigation
     showInNavigation: true,
-    
+
     // Show pricing link in footer resources
     showInFooter: true,
-    
+
     // Navigation label
     navigationLabel: "Pricing",
-    
+
     // Page title and description
     title: "Simple, Transparent Pricing",
     description: "Choose the plan that's right for your job board needs.",
-    
+
     // Currency symbol
     currencySymbol: "$",
-    
+
     // Payment processing information (displayed below pricing cards)
-    paymentProcessingText: "Payments are processed & secured by Stripe. Price in USD. VAT may apply.",
-    
+    paymentProcessingText:
+      "Payments are processed & secured by Stripe. Price in USD. VAT may apply.",
+
     // Payment method icons to display
     paymentMethods: {
       enabled: true,
@@ -448,7 +461,7 @@ export const config = {
         { name: "paypal", alt: "PayPal" },
       ],
     },
-    
+
     // Plans configuration
     plans: [
       {
@@ -474,7 +487,8 @@ export const config = {
         name: "Pro",
         price: 99,
         billingTerm: "job posting",
-        description: "Great for occasional hiring needs with better visibility.",
+        description:
+          "Great for occasional hiring needs with better visibility.",
         features: [
           "3 active job postings",
           "Standard job listings",
@@ -496,7 +510,8 @@ export const config = {
         name: "Business",
         price: 999,
         billingTerm: "year",
-        description: "Unlimited jobs postings for one year for serious recruiters.",
+        description:
+          "Unlimited jobs postings for one year for serious recruiters.",
         features: [
           "5 active job postings",
           "Featured job listings",
@@ -534,7 +549,7 @@ export const config = {
     // Page title and description
     title: "Get in Touch",
     description: "Have questions or feedback? We'd love to hear from you.",
-    
+
     // Support channels section
     supportChannels: {
       title: "Support Channels",
@@ -542,30 +557,33 @@ export const config = {
         {
           type: "email",
           title: "Email Support",
-          description: "Our support team is available to help you with any questions or issues you might have.",
+          description:
+            "Our support team is available to help you with any questions or issues you might have.",
           buttonText: "Contact via Email",
           buttonLink: "mailto:hello@bordful.com",
-          icon: "Mail"
+          icon: "Mail",
         },
         {
           type: "twitter",
           title: "Twitter/X Support",
-          description: "Get quick responses and stay updated with our latest announcements on Twitter/X.",
+          description:
+            "Get quick responses and stay updated with our latest announcements on Twitter/X.",
           buttonText: "Follow on Twitter/X",
           buttonLink: "https://twitter.com/bordful",
-          icon: "Twitter"
+          icon: "Twitter",
         },
         {
           type: "faq",
           title: "FAQ",
-          description: "Browse our comprehensive FAQ section to find answers to the most common questions.",
+          description:
+            "Browse our comprehensive FAQ section to find answers to the most common questions.",
           buttonText: "View FAQ",
           buttonLink: "/faq",
-          icon: "HelpCircle"
-        }
-      ]
+          icon: "HelpCircle",
+        },
+      ],
     },
-    
+
     // Contact information section
     contactInfo: {
       title: "Contact Information",
@@ -573,8 +591,8 @@ export const config = {
       companyName: "Bordful Inc.",
       email: "hello@bordful.com",
       phone: "+1 (555) 123-4567",
-      address: "123 Main Street, San Francisco, CA 94105"
-    }
+      address: "123 Main Street, San Francisco, CA 94105",
+    },
   },
 
   // Currency Configuration
@@ -585,7 +603,9 @@ export const config = {
     // Allowed currencies for job listings
     // This list can include any valid CurrencyCode from lib/constants/currencies.ts
     // Set to null to allow all currencies, or specify a subset
-    allowedCurrencies: ["USD", "EUR", "GBP", "BTC", "ETH", "USDT", "USDC"] as CurrencyCode[] | null, // null means all currencies are allowed
+    allowedCurrencies: ["USD", "EUR", "GBP", "BTC", "ETH", "USDT", "USDC"] as
+      | CurrencyCode[]
+      | null, // null means all currencies are allowed
   },
 };
 ```
@@ -642,15 +662,18 @@ The pricing page is fully configurable through the `pricing` section in the conf
 Each plan in the `pricing.plans` array can be customized with:
 
 1. **Basic Information**:
+
    - `name`: The name of the plan (e.g., "Free", "Pro", "Business")
    - `price`: The price of the plan (0 for free plans)
    - `billingTerm`: A string describing the billing term (e.g., "forever", "job posting", "year", "month")
    - `description`: A description of the plan
 
 2. **Features**:
+
    - `features`: An array of strings describing the features included in the plan
 
 3. **Call to Action**:
+
    - `cta.label`: The text for the CTA button
    - `cta.link`: The URL the button links to
    - `cta.variant`: The visual style of the button ("outline" or "default")
@@ -767,7 +790,7 @@ contact: {
   // Page title and description
   title: "Get in Touch",
   description: "Have questions or feedback? We'd love to hear from you.",
-  
+
   // Support channels section
   supportChannels: {
     title: "Support Channels",
@@ -798,7 +821,7 @@ contact: {
       }
     ]
   },
-  
+
   // Contact information section
   contactInfo: {
     title: "Contact Information",
@@ -814,6 +837,7 @@ contact: {
 #### Supported Icons
 
 The contact page supports all [Lucide icons](https://lucide.dev/icons), with the following pre-configured for convenience:
+
 - `Mail` - For email support
 - `Twitter` - For Twitter/X support
 - `HelpCircle` - For FAQ or help center
@@ -856,6 +880,7 @@ export const revalidate = 300;
 ```
 
 Considerations when adjusting revalidation periods:
+
 - **Shorter periods** (e.g., 60 seconds): More frequent updates but more API calls to Airtable
 - **Longer periods** (e.g., 3600 seconds): Fewer API calls but less frequent content updates
 - **Static content** (e.g., about, terms pages): Consider using `export const dynamic = "force-static"` instead
@@ -875,6 +900,7 @@ All page files consistently use a 5-minute (300 seconds) revalidation period by 
 - `app/jobs/type/[type]/page.tsx` (job type-specific jobs)
 
 For static content that rarely changes, the app uses `export const dynamic = "force-static"` in these files:
+
 - `app/about/page.tsx`
 - `app/privacy/page.tsx`
 - `app/terms/page.tsx`
@@ -961,12 +987,14 @@ Example URLs:
 The job board automatically generates a comprehensive XML sitemap at `/sitemap.xml` that includes:
 
 ### Structure
+
 - Homepage and static pages
 - Individual job listings with descriptive URLs
 - Job category pages (types, levels, locations)
 - All with proper priorities and change frequencies
 
 ### Features
+
 - **SEO-Friendly URLs**: Uses descriptive slugs (e.g., `senior-developer-at-company`)
 - **Dynamic Updates**: Automatically includes new jobs through ISR
 - **Priority Levels**:
@@ -980,6 +1008,7 @@ The job board automatically generates a comprehensive XML sitemap at `/sitemap.x
   - Category Pages: Daily
 
 ### Implementation
+
 The sitemap is generated using Next.js's built-in Metadata API in `app/sitemap.ts`:
 
 ```typescript
@@ -993,22 +1022,27 @@ The sitemap is generated using Next.js's built-in Metadata API in `app/sitemap.t
 ```
 
 ### Configuration
+
 1. Set your production URL in `.env`:
+
 ```env
 NEXT_PUBLIC_APP_URL=https://yourdomain.com
 ```
 
 2. The sitemap will be available at:
+
 ```
 https://yourdomain.com/sitemap.xml
 ```
 
 3. Submit your sitemap to search engines:
+
 - Google Search Console
 - Bing Webmaster Tools
 - Other search engines as needed
 
 ### Automatic Updates
+
 - Sitemap updates automatically with new jobs
 - Uses Incremental Static Regeneration (ISR)
 - No manual rebuilds required
@@ -1019,12 +1053,15 @@ https://yourdomain.com/sitemap.xml
 The job board includes a comprehensive RSS feed system that allows users to subscribe to job listings:
 
 ### Available Feed Formats
+
 - **RSS 2.0**: Available at `/feed.xml` (most widely supported format)
 - **Atom**: Available at `/atom.xml` (more standardized format)
 - **JSON Feed**: Available at `/feed.json` (modern JSON-based format)
 
 ### Feed Content
+
 Each feed includes:
+
 - Job titles with company names
 - Job descriptions (configurable preview length)
 - Job metadata (type, location, salary, posting date)
@@ -1034,6 +1071,7 @@ Each feed includes:
 - Featured job indicators
 
 ### Discovery and Access
+
 - Auto-discovery links in HTML head for feed readers
 - RSS icon in the navigation for quick access
 - Feed links in the footer with format options
@@ -1043,6 +1081,7 @@ Each feed includes:
   - `application/feed+json` for JSON Feed
 
 ### Implementation
+
 The feeds are implemented using Next.js route handlers with 5-minute revalidation and configuration-based settings:
 
 ```typescript
@@ -1060,26 +1099,26 @@ export async function GET() {
     title: config.rssFeed?.title || `${config.title} | Job Feed`,
     // ... other feed settings
   });
-  
+
   // Use the configured description length
   const descriptionLength = config.rssFeed?.descriptionLength || 500;
-  
+
   // Add job items with the configured description length
-  jobs.forEach(job => {
+  jobs.forEach((job) => {
     // ... job processing
     const jobDescription = `
       // ... job description formatting
       ${job.description.substring(0, descriptionLength)}...
     `;
-    
+
     // Add to feed
     // ...
   });
-  
+
   // Return with proper content type
   return new Response(feed.rss2(), {
     headers: {
-      'Content-Type': 'application/rss+xml; charset=utf-8',
+      "Content-Type": "application/rss+xml; charset=utf-8",
     },
   });
 }
@@ -1096,19 +1135,19 @@ rssFeed: {
 
   // Show RSS feed links in navigation
   showInNavigation: true,
-  
+
   // Show RSS feed links in footer
   showInFooter: true,
 
   // Navigation label (if showing in navigation)
   navigationLabel: "RSS Feed",
-  
+
   // Footer label (if showing in footer)
   footerLabel: "Job Feeds",
-  
+
   // Title for the RSS feed
   title: "Latest Jobs Feed",
-  
+
   // Number of job description characters to include (preview length)
   descriptionLength: 500,
 
@@ -1132,6 +1171,7 @@ rssFeed: {
 - **Graceful Degradation**: 404 responses for disabled feed formats
 
 ### Use Cases
+
 - Subscribe to job listings in your preferred feed reader
 - Integrate job listings with other applications
 - Get notified of new jobs automatically
@@ -1143,6 +1183,7 @@ rssFeed: {
 The job board automatically generates a comprehensive robots.txt file at `/robots.txt` that helps search engines understand which parts of your site to crawl.
 
 ### Features
+
 - **Dynamic Generation**: Programmatically created using Next.js's Metadata API
 - **Customizable Rules**: Configure which user agents can access which parts of your site
 - **Protected Routes**: Automatically blocks crawlers from accessing admin and private routes
@@ -1150,6 +1191,7 @@ The job board automatically generates a comprehensive robots.txt file at `/robot
 - **Canonical Host**: Defines the canonical hostname to prevent duplicate content issues
 
 ### Implementation
+
 The robots.txt file is generated using Next.js's built-in Metadata API in `app/robots.ts`:
 
 ```typescript
@@ -1157,20 +1199,22 @@ The robots.txt file is generated using Next.js's built-in Metadata API in `app/r
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/admin/', '/private/', '/api/*'],
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/admin/", "/private/", "/api/*"],
     },
-    sitemap: 'https://yourdomain.com/sitemap.xml',
-    host: 'https://yourdomain.com',
-  }
+    sitemap: "https://yourdomain.com/sitemap.xml",
+    host: "https://yourdomain.com",
+  };
 }
 ```
 
 ### Configuration
+
 The robots.txt file automatically uses your site URL from the config file, ensuring consistency across your entire site.
 
 ### Benefits
+
 - **SEO Improvement**: Helps search engines crawl your site more efficiently
 - **Content Control**: Prevents indexing of private or admin sections
 - **No Maintenance**: Automatically updated when you deploy changes
@@ -1197,6 +1241,7 @@ Current integration is Encharge and only allows subscribing to job alerts.
 #### Quick Setup
 
 1. Set the following variables in the `.env` file:
+
    ```
    EMAIL_PROVIDER=encharge
    ENCHARGE_WRITE_KEY=your_encharge_write_key_here
@@ -1286,11 +1331,13 @@ scripts: {
 Next.js provides three loading strategies for scripts:
 
 - `beforeInteractive`: Loads and executes before the page becomes interactive
+
   - Use for critical scripts that must load first
   - Example: Polyfills, core functionality that's needed immediately
   - Note: This blocks page interactivity, so use sparingly
 
 - `afterInteractive` (recommended for analytics): Loads after the page becomes interactive
+
   - Best for analytics and tracking scripts
   - Example: Google Analytics, Umami, Plausible
   - Doesn't block page loading but still loads early enough to track user behavior
@@ -1309,13 +1356,13 @@ scripts: {
   head: [
     {
       src: "https://analytics.example.com/script.js",
-      strategy: "afterInteractive",  // Best for analytics
+      strategy: "afterInteractive", // Best for analytics
       attributes: {
         "data-website-id": "your-website-id",
-        defer: ""  // Boolean attributes should use empty string
-      }
-    }
-  ]
+        defer: "", // Boolean attributes should use empty string
+      },
+    },
+  ];
 }
 ```
 
@@ -1335,6 +1382,7 @@ attributes: {
 ```
 
 This implementation:
+
 - Uses Next.js best practices for script loading
 - Provides type safety with TypeScript
 - Allows easy configuration in one place

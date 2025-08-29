@@ -2,7 +2,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Switch } from "@/components/ui/switch";
 import { useState, useMemo, useCallback } from "react";
-import { CareerLevel, Job, normalizeAnnualSalary } from "@/lib/db/airtable";
+import { CareerLevel, Job, normalizeAnnualSalary } from "@/lib/types/job";
 import { CAREER_LEVEL_DISPLAY_NAMES } from "@/lib/constants/career-levels";
 import {
   LanguageCode,
@@ -264,11 +264,10 @@ export function JobFilters({
               </Label>
             </div>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full ${
-                selectedTypes.includes("Full-time")
+              className={`text-xs px-2 py-0.5 rounded-full ${selectedTypes.includes("Full-time")
                   ? "bg-zinc-900 text-zinc-50"
                   : "bg-zinc-100 text-zinc-500"
-              }`}
+                }`}
             >
               {(counts.types["Full-time"] || 0).toLocaleString()}
             </span>
@@ -287,11 +286,10 @@ export function JobFilters({
               </Label>
             </div>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full ${
-                selectedTypes.includes("Part-time")
+              className={`text-xs px-2 py-0.5 rounded-full ${selectedTypes.includes("Part-time")
                   ? "bg-zinc-900 text-zinc-50"
                   : "bg-zinc-100 text-zinc-500"
-              }`}
+                }`}
             >
               {(counts.types["Part-time"] || 0).toLocaleString()}
             </span>
@@ -310,11 +308,10 @@ export function JobFilters({
               </Label>
             </div>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full ${
-                selectedTypes.includes("Contract")
+              className={`text-xs px-2 py-0.5 rounded-full ${selectedTypes.includes("Contract")
                   ? "bg-zinc-900 text-zinc-50"
                   : "bg-zinc-100 text-zinc-500"
-              }`}
+                }`}
             >
               {(counts.types["Contract"] || 0).toLocaleString()}
             </span>
@@ -333,11 +330,10 @@ export function JobFilters({
               </Label>
             </div>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full ${
-                selectedTypes.includes("Freelance")
+              className={`text-xs px-2 py-0.5 rounded-full ${selectedTypes.includes("Freelance")
                   ? "bg-zinc-900 text-zinc-50"
                   : "bg-zinc-100 text-zinc-500"
-              }`}
+                }`}
             >
               {(counts.types["Freelance"] || 0).toLocaleString()}
             </span>
@@ -367,11 +363,10 @@ export function JobFilters({
                 </Label>
               </div>
               <span
-                className={`text-xs px-2 py-0.5 rounded-full ${
-                  selectedLevels.includes(level)
+                className={`text-xs px-2 py-0.5 rounded-full ${selectedLevels.includes(level)
                     ? "bg-zinc-900 text-zinc-50"
                     : "bg-zinc-100 text-zinc-500"
-                }`}
+                  }`}
               >
                 {(counts.roles[level] || 0).toLocaleString()}
               </span>
@@ -404,11 +399,10 @@ export function JobFilters({
             </Label>
           </div>
           <span
-            className={`text-xs px-2 py-0.5 rounded-full ${
-              isRemoteOnly
+            className={`text-xs px-2 py-0.5 rounded-full ${isRemoteOnly
                 ? "bg-zinc-900 text-zinc-50"
                 : "bg-zinc-100 text-zinc-500"
-            }`}
+              }`}
           >
             {counts.remote.toLocaleString()} of {jobs.length.toLocaleString()}
           </span>
@@ -439,11 +433,10 @@ export function JobFilters({
                 </Label>
               </div>
               <span
-                className={`text-xs px-2 py-0.5 rounded-full ${
-                  selectedSalaryRanges.includes(range)
+                className={`text-xs px-2 py-0.5 rounded-full ${selectedSalaryRanges.includes(range)
                     ? "bg-zinc-900 text-zinc-50"
                     : "bg-zinc-100 text-zinc-500"
-                }`}
+                  }`}
               >
                 {count.toLocaleString()}
               </span>
@@ -470,11 +463,10 @@ export function JobFilters({
             </Label>
           </div>
           <span
-            className={`text-xs px-2 py-0.5 rounded-full ${
-              isVisaSponsorship
+            className={`text-xs px-2 py-0.5 rounded-full ${isVisaSponsorship
                 ? "bg-zinc-900 text-zinc-50"
                 : "bg-zinc-100 text-zinc-500"
-            }`}
+              }`}
           >
             {(counts.visa || 0).toLocaleString()}
           </span>
@@ -503,11 +495,10 @@ export function JobFilters({
                 </Label>
               </div>
               <span
-                className={`text-xs px-2 py-0.5 rounded-full ${
-                  selectedLanguages.includes(lang as LanguageCode)
+                className={`text-xs px-2 py-0.5 rounded-full ${selectedLanguages.includes(lang as LanguageCode)
                     ? "bg-zinc-900 text-zinc-50"
                     : "bg-zinc-100 text-zinc-500"
-                }`}
+                  }`}
               >
                 {count.toLocaleString()}
               </span>

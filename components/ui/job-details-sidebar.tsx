@@ -2,8 +2,7 @@ import {
   CareerLevel,
   Salary,
   formatSalary,
-  formatUSDApproximation,
-} from "@/lib/db/airtable";
+} from "@/lib/types/job";
 import { WorkplaceType, RemoteRegion } from "@/lib/constants/workplace";
 import {
   LanguageCode,
@@ -89,7 +88,6 @@ export function JobDetailsSidebar({
   job_identifier,
 }: JobDetailsSidebarProps) {
   const showSalary = salary && (salary.min !== null || salary.max !== null);
-  const usdApprox = showSalary ? formatUSDApproximation(salary) : null;
   const careerLevels = Array.from(
     new Set(Array.isArray(career_level) ? career_level : [career_level])
   );
@@ -206,8 +204,8 @@ export function JobDetailsSidebar({
               workplace_type === "Not specified"
                 ? "not specified"
                 : workplace_type === "On-site"
-                ? "onsite"
-                : (workplace_type.toLowerCase() as
+                  ? "onsite"
+                  : (workplace_type.toLowerCase() as
                     | "remote"
                     | "hybrid"
                     | "default")
@@ -228,9 +226,7 @@ export function JobDetailsSidebar({
             <p className="text-sm text-gray-600">
               {formatSalary(salary, true)}
             </p>
-            {usdApprox && (
-              <p className="text-xs text-gray-500 mt-0.5">{usdApprox}</p>
-            )}
+
           </div>
         </div>
       )}
@@ -294,8 +290,8 @@ export function JobDetailsSidebar({
               visa_sponsorship === "Yes"
                 ? "visa-yes"
                 : visa_sponsorship === "No"
-                ? "visa-no"
-                : "visa-not-specified"
+                  ? "visa-no"
+                  : "visa-not-specified"
             }
           >
             {visa_sponsorship}

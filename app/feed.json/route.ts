@@ -1,7 +1,7 @@
 import { Feed } from "feed";
-import { getJobs } from "@/lib/db/airtable";
+// TODO: Update to use MongoDB API
 import { generateJobSlug } from "@/lib/utils/slugify";
-import { formatSalary } from "@/lib/db/airtable";
+import { formatSalary } from "@/lib/types/job";
 import config from "@/config";
 
 export const revalidate = 300; // 5 minutes, matching other dynamic routes

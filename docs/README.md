@@ -13,7 +13,7 @@ Welcome to the Bordful documentation. This guide will help you understand and us
 
 ## Overview
 
-Bordful is an open-source job board platform built with Next.js, Tailwind CSS, and Airtable. It provides a modern, responsive interface for job seekers and a simple way for administrators to manage job listings.
+Bordful is an open-source job board platform built with Next.js, Tailwind CSS, and MongoDB. It provides a modern, responsive interface for job seekers and a simple way for administrators to manage job listings.
 
 ## Getting Started
 
@@ -25,4 +25,4 @@ To get started with Bordful:
 4. Copy `config/config.example.ts` to `config/config.ts` and customize as needed
 5. Run the development server with `npm run dev`
 
-For more detailed instructions, please refer to the [README.md](../README.md) file in the root directory. 
+For more detailed instructions, please refer to the [README.md](../README.md) file in the root directory.

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Job } from "@/lib/db/airtable";
+import type { Job } from "@/lib/types/job";
 import { generateJobSlug } from "@/lib/utils/slugify";
 
 interface SimilarJobsProps {
@@ -50,14 +50,14 @@ export function SimilarJobs({ currentJob, allJobs }: SimilarJobsProps) {
                 ? `Remote (${job.remote_region})`
                 : null
               : job.workplace_type === "Hybrid"
-              ? [
+                ? [
                   job.workplace_city,
                   job.workplace_country,
                   job.remote_region ? `Hybrid (${job.remote_region})` : null,
                 ]
                   .filter(Boolean)
                   .join(", ") || null
-              : [job.workplace_city, job.workplace_country]
+                : [job.workplace_city, job.workplace_country]
                   .filter(Boolean)
                   .join(", ") || null;
 

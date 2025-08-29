@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Job, formatSalary } from "@/lib/db/airtable";
+import { Job, formatSalary } from "@/lib/types/job";
 import { formatDate } from "@/lib/utils/formatDate";
 import { generateJobSlug } from "@/lib/utils/slugify";
 import { JobBadge } from "@/components/ui/job-badge";
@@ -31,9 +31,8 @@ export function CompactJobCard({ job }: { job: Job }) {
   return (
     <Link
       href={`/jobs/${generateJobSlug(job.title, job.company)}`}
-      className={`block py-2.5 px-3 hover:bg-zinc-50 transition-colors ${
-        job.featured ? "bg-zinc-50" : ""
-      }`}
+      className={`block py-2.5 px-3 hover:bg-zinc-50 transition-colors ${job.featured ? "bg-zinc-50" : ""
+        }`}
     >
       <div className="flex items-center gap-2">
         {/* Title and badges */}

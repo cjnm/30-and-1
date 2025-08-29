@@ -14,29 +14,32 @@ The schema.org implementation follows the [JobPosting](https://schema.org/JobPos
 - **Visa & Eligibility Requirements**: Clear indication of visa sponsorship availability
 - **Detailed Job Classifications**: Industry and occupational category support
 
-## Airtable Integration
+## MongoDB Integration
 
-The schema implementation maps directly to fields in your Airtable base. The following fields are recommended:
+The schema implementation uses MongoDB collections with Mongoose schemas. The following fields are available:
 
 ### Required Fields
+
 - `title` - Job title
 - `description` - Job description
 - `company` - Company name
 - `posted_date` - Publication date
 
 ### Recommended Fields
+
 - `valid_through` - Expiration date (defaults to 30 days from posted_date if not specified)
 - `job_identifier` - Job reference code/ID
 - `visa_sponsorship` - Whether visa sponsorship is available ("Yes"/"No"/"Not specified")
 
 ### Enhanced Schema Fields
+
 - `skills` - Required skills for the position
 - `qualifications` - Specific qualifications needed
 - `education_requirements` - Educational background needed
 - `experience_requirements` - Experience needed for the position
 - `responsibilities` - Key responsibilities of the role
 - `industry` - Industry associated with the job position
-- `occupational_category` - Job category (preferably using O*NET-SOC codes)
+- `occupational_category` - Job category (preferably using O\*NET-SOC codes)
 
 ## Technical Implementation
 
@@ -105,4 +108,4 @@ You can validate your job schema implementation using:
   "jobBenefits": "Medical, dental, vision insurance, 401(k) matching, unlimited PTO",
   "directApply": false
 }
-``` 
+```
